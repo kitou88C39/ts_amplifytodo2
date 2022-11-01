@@ -1,0 +1,80 @@
+import { useForm } from 'react-hook-form';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  Input,
+} from '@chakra-ui/react';
+import { useAppDispatch } from '../../stores/hooks';
+import { createTodo } from '../../stores/slices/todoSlice';
+
+const AddTodo: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm();
+  const onSubmit = (data: { title: string; content: string }) => {
+    const { title } = data;
+    dispatch(createTodo(title));
+    reset();
+  };
+  return (
+    <Box display='flex' justifyContent='center'>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl
+          isInvalid={errors.title}
+          w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
+        >
+          <Input
+            id='title'
+            placeholder='Enter Title'
+            {...register('title', { required: 'Please enter title.' })}
+          />
+          {/* <Input
+            id='content'
+            placeholder='Enter Content'
+            {...register('content', { required: 'Please enter content.' })}
+          /> */}
+          <FormErrorMessage>
+            {errors.title && errors.title.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl
+          isInvalid={errors.content}
+          w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
+        >
+          {/* <Input
+            id='title'
+            placeholder='Enter Title'
+            {...register('title', { required: 'Please enter title.' })}
+          /> */}
+          <Input
+            id='content'
+            placeholder='Enter Content'
+            {...register('content', { required: 'Please enter content.' })}
+          />
+          <FormErrorMessage>
+            {errors.content && errors.content.message}
+          </FormErrorMessage>
+        </FormControl>
+        <Box w='100%' display='flex' justifyContent='flex-end'>
+          <Button
+            mt={4}
+            colorScheme='whatsapp'
+            isLoading={isSubmitting}
+            type='submit'
+            variant='outline'
+          >
+            Submit
+          </Button>
+        </Box>
+      </form>
+    </Box>
+  );
+};
+
+export default AddTodo;
