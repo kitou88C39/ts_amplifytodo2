@@ -12,7 +12,7 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-//import { Flex, Icon, Text } from '@chakra-ui/react';
+
 import {
   RiCheckboxBlankCircleLine,
   RiCheckboxCircleFill,
@@ -21,7 +21,11 @@ import {
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { useAppDispatch } from '../../stores/hooks';
-import { deleteTodo, updateTodo } from '../../stores/slices/todoSlice';
+import {
+  deleteTodo,
+  editTodo,
+  updateTodo,
+} from '../../stores/slices/todoSlice';
 
 type Props = {
   id: string;
@@ -38,10 +42,10 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
     dispatch(updateTodo(id));
   };
   const handleEdit = () => {
-    dispatch(updateTodo(id));
+    dispatch(editTodo(id));
   };
   const handleDelete = () => {
-    dispatch(updateTodo(id));
+    dispatch(deleteTodo(id));
   };
 
   return (
