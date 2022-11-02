@@ -18,8 +18,8 @@ const AddTodo: React.FC = () => {
     reset,
   } = useForm();
   const onSubmit = (data: { title: string; content: string }) => {
-    const { title } = data;
-    dispatch(createTodo(title));
+    const { title, content } = data;
+    dispatch(createTodo(title, content));
     reset();
   };
   return (
