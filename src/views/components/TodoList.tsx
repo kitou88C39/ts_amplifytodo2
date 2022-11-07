@@ -7,9 +7,6 @@ const TodoList: React.FC = () => {
   const TodoList = useAppSelector(selectTodoList);
   return (
     <Flex flexDir='column' align='center'>
-      {/* <Center mb={8}> */}
-      {/* <Heading>TodoList</Heading> */}
-      {/* </Center> */}
       <VStack
         divider={<StackDivider borderColor='gray.300' />}
         align='stretch'

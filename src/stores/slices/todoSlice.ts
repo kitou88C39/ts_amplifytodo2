@@ -31,8 +31,8 @@ export const todoSlice = createSlice({
     createTodo: (state, action) => {
       const newTodo = {
         id: uuidv4(),
-        title: action.payload,
-        content: action.payload,
+        title: action.payload.title,
+        content: action.payload.content,
         isDone: false,
       };
       state.todoList = [newTodo, ...state.todoList];
@@ -53,6 +53,24 @@ export const todoSlice = createSlice({
         todo.isDone = !todo.isDone;
       }
     },
+
+    // editTodo: (state, action) => {
+    //   const todo = state.todoList.find((todo) => {
+    //     todo.id === action.payload.id);
+    //   if (todo) {
+    //     todo.title = action.payload.title;
+    //     todo.content = action.payload.content;
+    //   }
+    // },
+
+    // editTodo: (state, action) => {
+    //   const { id, title, content } = action.payload;
+    //   const existingTodo = state.find((todo: any) => todo.id === id);
+    //   if (existingTodo) {
+    //     existingTodo.title = title;
+    //     existingTodo.content = content;
+    //   }
+    // },
 
     deleteTodo: (state, action) => {
       state.todoList = state.todoList.filter((todo) => {

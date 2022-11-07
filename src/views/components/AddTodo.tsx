@@ -4,7 +4,10 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  Input,
+  //Input,
+  //TextTitle,
+  //TextField,
+  Textarea,
 } from '@chakra-ui/react';
 import { useAppDispatch } from '../../stores/hooks';
 import { createTodo } from '../../stores/slices/todoSlice';
@@ -18,8 +21,8 @@ const AddTodo: React.FC = () => {
     reset,
   } = useForm();
   const onSubmit = (data: { title: string; content: string }) => {
-    const { title, content } = data;
-    dispatch(createTodo(title, content));
+    //const { title, content } = data;
+    dispatch(createTodo(data));
     reset();
   };
   return (
@@ -29,16 +32,12 @@ const AddTodo: React.FC = () => {
           isInvalid={errors.title}
           w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
         >
-          <Input
+          <Textarea
             id='title'
             placeholder='Enter Title'
             {...register('title', { required: 'Please enter title.' })}
           />
-          {/* <Input
-            id='content'
-            placeholder='Enter Content'
-            {...register('content', { required: 'Please enter content.' })}
-          /> */}
+
           <FormErrorMessage>
             {errors.title && errors.title.message}
           </FormErrorMessage>
@@ -47,12 +46,7 @@ const AddTodo: React.FC = () => {
           isInvalid={errors.content}
           w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
         >
-          {/* <Input
-            id='title'
-            placeholder='Enter Title'
-            {...register('title', { required: 'Please enter title.' })}
-          /> */}
-          <Input
+          <Textarea
             id='content'
             placeholder='Enter Content'
             {...register('content', { required: 'Please enter content.' })}

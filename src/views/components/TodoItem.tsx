@@ -12,12 +12,10 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-
 import {
   RiCheckboxBlankCircleLine,
   RiCheckboxCircleFill,
 } from 'react-icons/ri';
-
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { useAppDispatch } from '../../stores/hooks';
@@ -63,7 +61,6 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
         <Text fontSize='xl' onClick={onOpen}>
           <p color='gray.400'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
           {title}
-          {/* {content} */}
         </Text>
       </Flex>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
