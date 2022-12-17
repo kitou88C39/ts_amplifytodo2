@@ -25,6 +25,7 @@ const AddTodo: React.FC = () => {
     dispatch(createTodo(data));
     reset();
   };
+
   return (
     <Box display='flex' justifyContent='center'>
       <form onSubmit={handleSubmit(onSubmit)}>

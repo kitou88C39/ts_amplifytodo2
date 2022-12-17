@@ -1,16 +1,18 @@
 import {
   Modal,
+  ModalBody,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalFooter,
-  ModalBody,
   ModalCloseButton,
   useDisclosure,
   Flex,
   Icon,
   Text,
   Button,
+  Container,
+  Box,
 } from '@chakra-ui/react';
 import {
   RiCheckboxBlankCircleLine,
@@ -24,6 +26,7 @@ import {
   editTodo,
   updateTodo,
 } from '../../stores/slices/todoSlice';
+import ReactMarkdown from 'react-markdown';
 
 type Props = {
   id: string;
@@ -65,10 +68,19 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
       </Flex>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent h='600px' w='1000px'>
+        {/* <ModalContent h='600px' w='1000px'> */}
+        <ModalContent>
           <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>{content}</ModalBody>
+          <Container maxW='2xl' centerContent>
+            <ModalCloseButton />
+            <Box padding='56' bg='green.500' color='white' maxW='md'>
+              <Text fontSize='20px'>
+                <ModalBody>
+                  <ReactMarkdown>{content}</ReactMarkdown>
+                </ModalBody>
+              </Text>
+            </Box>
+          </Container>
           <ModalFooter gap={7}>
             <Icon
               as={BsPencil}
