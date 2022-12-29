@@ -1,3 +1,6 @@
+import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+
 import {
   Box,
   Stack,
@@ -8,8 +11,8 @@ import {
 } from '@chakra-ui/react';
 
 const Header = () => {
-  //   const { isOpen, onOpen, onClose } = useDisclosure();
-  //   const handleToggle = () => (isOpen ? onClose() : onOpen());
+  //const { isOpen, onOpen, onClose } = useDisclosure();
+  //const handleToggle = () => (isOpen ? onClose() : onOpen());
 
   return (
     <Flex
@@ -18,13 +21,15 @@ const Header = () => {
       justify='space-between'
       wrap='wrap'
       padding={4}
-      bg='green.500'
-      color='white'
-      //   {...props}
+      bg='white'
+      color='black'
+      boxShadow='md'
+      p='3'
+      rounded='md'
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
-          Front-end Blog
+          Kairanban
         </Heading>
       </Flex>
 
@@ -42,8 +47,16 @@ const Header = () => {
         mt={{ base: 4, md: 0 }}
       >
         <Button
+          colorScheme='whatsapp'
           variant='outline'
-          _hover={{ bg: 'green.700', borderColor: 'green.700' }}
+          _hover={{ bg: 'green.200', borderColor: 'green.700' }}
+        >
+          SignIn
+        </Button>
+        <Button
+          colorScheme='whatsapp'
+          variant='outline'
+          _hover={{ bg: 'green.200', borderColor: 'green.700' }}
         >
           SignOut
         </Button>

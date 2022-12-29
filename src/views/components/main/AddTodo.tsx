@@ -9,8 +9,8 @@ import {
   //TextField,
   Textarea,
 } from '@chakra-ui/react';
-import { useAppDispatch } from '../../stores/hooks';
-import { createTodo } from '../../stores/slices/todoSlice';
+import { useAppDispatch } from '../../../stores/hooks';
+import { createTodo } from '../../../stores/slices/todoSlice';
 
 const AddTodo: React.FC = () => {
   const dispatch = useAppDispatch();

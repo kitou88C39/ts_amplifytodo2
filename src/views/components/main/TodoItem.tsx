@@ -10,9 +10,9 @@ import {
   Flex,
   Icon,
   Text,
+  Textarea,
   Button,
   Container,
-  Box,
 } from '@chakra-ui/react';
 import {
   RiCheckboxBlankCircleLine,
@@ -20,13 +20,16 @@ import {
 } from 'react-icons/ri';
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
-import { useAppDispatch } from '../../stores/hooks';
+import { useAppDispatch } from '../../../stores/hooks';
 import {
   deleteTodo,
   editTodo,
   updateTodo,
-} from '../../stores/slices/todoSlice';
+} from '../../../stores/slices/todoSlice';
 import ReactMarkdown from 'react-markdown';
+import { useState } from 'react';
+//import { text } from 'stream/consumers';
+//import { setTextRange } from 'typescript';
 
 type Props = {
   id: string;
@@ -37,13 +40,17 @@ type Props = {
 
 const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [isEdit, setIsEdit] = useState(false);
+  const [text, setText] = useState(content);
   const dispatch = useAppDispatch();
   const handleUpdate = () => {
     dispatch(updateTodo(id));
   };
   const handleEdit = () => {
-    dispatch(editTodo(id));
+    if (isEdit) {
+      dispatch(editTodo({ id: id, content: text }));
+    }
+    setIsEdit(!isEdit);
   };
   const handleDelete = () => {
     dispatch(deleteTodo(id));
@@ -71,15 +78,20 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
         {/* <ModalContent h='600px' w='1000px'> */}
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>
-          <Container maxW='2xl' centerContent>
+          <Container bg='green.500' maxW='2xl' color='white'>
             <ModalCloseButton />
-            <Box padding='56' bg='green.500' color='white' maxW='md'>
-              <Text fontSize='20px'>
-                <ModalBody>
-                  <ReactMarkdown>{content}</ReactMarkdown>
-                </ModalBody>
-              </Text>
-            </Box>
+            <ModalBody>
+              {isEdit ? (
+                <Textarea
+                  value={text}
+                  onChange={(event) => {
+                    setText(event.target.value);
+                  }}
+                />
+              ) : (
+                <ReactMarkdown children={content}></ReactMarkdown>
+              )}
+            </ModalBody>
           </Container>
           <ModalFooter gap={7}>
             <Icon

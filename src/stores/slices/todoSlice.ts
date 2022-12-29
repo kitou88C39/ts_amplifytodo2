@@ -9,20 +9,6 @@ const initialState: TodoState = {
   todoList: [],
 };
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched. Thunks are
-// typically used to make async requests.
-// export const incrementAsync = createAsyncThunk(
-//   'counter/fetchCount',
-//   async (amount: number) => {
-//     const response = await fetchCount(amount);
-//     // The value we return becomes the `fulfilled` action payload
-//     return response.data;
-//   }
-// );
-
 export const todoSlice = createSlice({
   name: 'todo',
   initialState,
@@ -47,30 +33,12 @@ export const todoSlice = createSlice({
     },
     editTodo: (state, action) => {
       const todo = state.todoList.find((todo) => {
-        return todo.id === action.payload;
+        return todo.id === action.payload.id;
       });
       if (todo) {
-        todo.isDone = !todo.isDone;
+        todo.content = action.payload.content;
       }
     },
-
-    // editTodo: (state, action) => {
-    //   const todo = state.todoList.find((todo) => {
-    //     todo.id === action.payload.id);
-    //   if (todo) {
-    //     todo.title = action.payload.title;
-    //     todo.content = action.payload.content;
-    //   }
-    // },
-
-    // editTodo: (state, action) => {
-    //   const { id, title, content } = action.payload;
-    //   const existingTodo = state.find((todo: any) => todo.id === id);
-    //   if (existingTodo) {
-    //     existingTodo.title = title;
-    //     existingTodo.content = content;
-    //   }
-    // },
 
     deleteTodo: (state, action) => {
       state.todoList = state.todoList.filter((todo) => {
