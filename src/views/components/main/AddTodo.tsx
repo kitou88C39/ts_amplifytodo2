@@ -35,7 +35,9 @@ const AddTodo: React.FC = () => {
         >
           <Textarea
             id='title'
+            color='black'
             placeholder='Enter Title'
+            _placeholder={{ color: 'inherit' }}
             {...register('title', { required: 'Please enter title.' })}
           />
 
@@ -49,7 +51,9 @@ const AddTodo: React.FC = () => {
         >
           <Textarea
             id='content'
+            color='black'
             placeholder='Enter Content'
+            _placeholder={{ color: 'inherit' }}
             {...register('content', { required: 'Please enter content.' })}
           />
           <FormErrorMessage>

@@ -12,7 +12,7 @@ const TodoList: React.FC = () => {
         align='stretch'
         w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
         border='2px'
-        borderColor='gray.500'
+        borderColor='gray.700'
         borderRadius='sm'
         p={3}
         maxH='65vh'

@@ -69,7 +69,7 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
           onClick={handleUpdate}
         />
         <Text fontSize='xl' onClick={onOpen}>
-          <p color='gray.400'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
+          <p color='gray.600'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
           {title}
         </Text>
       </Flex>

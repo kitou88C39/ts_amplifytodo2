@@ -6,8 +6,14 @@ import {
   VStack,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Upperscreen() {
+  let navigate = useNavigate();
+  const Main = () => {
+    navigate('/login');
+  };
+
   return (
     <Flex
       w={'full'}
@@ -37,6 +43,7 @@ export default function Upperscreen() {
               rounded={'full'}
               color={'green.500'}
               _hover={{ bg: 'gray.200' }}
+              onClick={() => Main()}
             >
               Get start
             </Button>

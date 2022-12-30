@@ -5,7 +5,7 @@ import Lowscreen from '../components/top/Lowscreen';
 const Top: React.FC = () => {
   return (
     // <VStack spacing={4} align='stretch' p={0}>
-    <div className='Tod'>
+    <div className='Top'>
       <Highscreen />
       <Lowscreen />
     </div>

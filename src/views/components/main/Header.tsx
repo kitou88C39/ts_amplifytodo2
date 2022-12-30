@@ -1,6 +1,3 @@
-import { Amplify } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-
 import {
   Box,
   Stack,
@@ -10,7 +7,10 @@ import {
   //useDisclosure,
 } from '@chakra-ui/react';
 
-const Header = () => {
+//type Props = { isLogin: boolean };
+
+const Header: React.FC = () => {
+  //const Header: React.FC<Props> = (props) => {
   //const { isOpen, onOpen, onClose } = useDisclosure();
   //const handleToggle = () => (isOpen ? onClose() : onOpen());
 
