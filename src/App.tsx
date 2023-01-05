@@ -1,12 +1,15 @@
 import { VStack } from '@chakra-ui/layout';
+import Top from './views/pages/Top';
+import Login from './views/components/auth/Login';
 import Main from './views/pages/Main';
-//import Top from './views/pages/Top';
-
+import { Route, Routes } from 'react-router-dom';
 const App: React.FC = () => {
   return (
     <VStack spacing={4} align='stretch' p={0}>
-      {/* <Top /> */}
-      <Main />
+      <Routes>
+        <Route path='/' element={<Top />} />
+        <Route path='/' element={<Main />} />
+      </Routes>
     </VStack>
   );
 };

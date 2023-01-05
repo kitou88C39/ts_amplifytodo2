@@ -7,12 +7,11 @@ import TodoList from '../components/main/TodoList';
 import { Auth, Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './../../aws-exports';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 Amplify.configure(awsExports);
 
 const Main: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
-
   Auth.currentUserInfo()
     .then((user: any) => {
       if (user == null) setIsLogin(true);
@@ -24,7 +23,7 @@ const Main: React.FC = () => {
 
   return (
     <VStack spacing={6} align='stretch' p={0}>
-      <Header />
+      <Header isLogin={isLogin} />
       <AddTodo />
       <TodoList />
     </VStack>
