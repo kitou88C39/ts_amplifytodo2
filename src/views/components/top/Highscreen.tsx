@@ -6,15 +6,15 @@ import {
   VStack,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Upperscreen() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Flex
       w={'full'}
-      h={'50vh'}
+      h={'45vh'}
       background={'green.300'}
       backgroundSize={'cover'}
       backgroundPosition={'center center'}
@@ -25,12 +25,12 @@ export default function Upperscreen() {
         px={useBreakpointValue({ base: 4, md: 8 })}
         bgGradient={'linear(to-r, blackAlpha.500, transparent)'}
       >
-        <Stack maxW={'5xl'} align={'flex-start'} spacing={10}>
+        <Stack maxW={'5xl'} align={'flex-start'} spacing={12}>
           <Text
             color={'white'}
             fontWeight={800}
             lineHeight={1.2}
-            fontSize={useBreakpointValue({ base: '4xl', md: '5xl' })}
+            fontSize={useBreakpointValue({ base: '4xl', md: '4xl' })}
           >
             知り得た情報を速やかに投稿しよう
           </Text>
@@ -38,11 +38,11 @@ export default function Upperscreen() {
             <Button
               bg={'white'}
               rounded={'full'}
-              color={'green.500'}
+              color={'green.600'}
               _hover={{ bg: 'gray.200' }}
-              //onClick={() => Main()}
+              onClick={() => navigate('/Login')}
             >
-              <Link to='/Login'>Get start</Link>
+              Get start
             </Button>
             {/* <Button
             bg={'whiteAlpha.400'}

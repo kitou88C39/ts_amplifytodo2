@@ -35,12 +35,12 @@ const Feature = ({ title, text, icon }: FeatureProps) => {
 
 export default function Lowerscreen() {
   return (
-    <Box p={14}>
+    <Box p={12}>
       <Text
         color={'black'}
         as={'span'}
-        //fontWeight='bold'
-        fontSize={{ base: 'lg', lg: '3xl' }}
+        fontWeight='bold'
+        fontSize={{ base: 'lg', lg: '2xl' }}
       >
         <Center color='black'>
           町内の情報と住民をつなぐ情報共有プラットホーム
@@ -80,7 +80,7 @@ export default function Lowerscreen() {
         <Center>
           <Feature
             icon={<Icon as={BsCheckSquare} w={14} h={14} />}
-            title={'3. 他人の投稿を読んだら、既読チェックする'}
+            title={'3. 他人の投稿記事を読んだら、既読チェックする'}
             text={'When you read someone else post, check your read'}
           />
         </Center>

@@ -1,35 +1,65 @@
 import {
   Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Checkbox,
+  //Box,
+  //FormControl,
+  //FormLabel,
+  //Input,
+  //Checkbox,
   Stack,
-  Link,
-  Button,
+  //Link,
+  //Button,
   Heading,
-  Text,
+  //Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { Amplify } from 'aws-amplify';
+//import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsExports from '../../../aws-exports';
+Amplify.configure(awsExports);
 
-export default function Login() {
+type Props = { isLogin: boolean };
+
+const Login: React.FC<Props> = (props) => {
+  const { isLogin } = props;
+  //const { user, signOut } = useAuthenticator((context) => [context.user]);
   return (
     <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}
+      bg={useColorModeValue('gray.100', 'gray.800')}
     >
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <Stack spacing={10} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool <Link color={'green.400'}>features</Link>{' '}
-            ✌️
-          </Text>
         </Stack>
-        <Box
+        <Authenticator>
+          {({ signOut, user }) => (
+            <main>
+              {user ? (
+                <h1 className='font-bold text-white'>
+                  <button
+                    onClick={signOut}
+                    className='inline-block px-4 py-2 mt-4 text-sm leading-none text-white border border-white rounded hover:border-transparent hover:text-emerald-700 hover:bg-white lg:mt-0'
+                  >
+                    {isLogin ? 'LogIn' : 'LogOut'}
+                  </button>
+                  Manager：{user.username}
+                </h1>
+              ) : (
+                <button
+                  onClick={signOut}
+                  className='inline-block px-4 py-2 mt-4 text-sm leading-none text-white border border-white rounded hover:border-transparent hover:text-emerald-700 hover:bg-white lg:mt-0'
+                >
+                  LogOut
+                </button>
+              )}
+            </main>
+          )}
+        </Authenticator>
+        {/* <Box
           rounded={'lg'}
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
@@ -64,8 +94,9 @@ export default function Login() {
               </Button>
             </Stack>
           </Stack>
-        </Box>
+        </Box> */}
       </Stack>
     </Flex>
   );
-}
+};
+export default Login;
