@@ -1,6 +1,9 @@
 import { Box, Stack, Heading, Flex, Button } from '@chakra-ui/react';
 //import { useAuthenticator } from '@aws-amplify/ui-react';
 //import { Authenticator } from '@aws-amplify/ui-react';
+//import '@aws-amplify/ui-react/styles.css';
+//import awsExports from '../../../aws-exports';
+//import { Amplify } from 'aws-amplify';
 
 type Props = { isLogin: boolean };
 const Header: React.FC<Props> = (props) => {
@@ -20,10 +23,10 @@ const Header: React.FC<Props> = (props) => {
       bg='white'
       color='black'
       boxShadow='md'
-      p='3'
+      p='5'
       rounded='md'
     >
-      <Flex align='center' mr={5}>
+      <Flex align='center' mr={6}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
           Kairanban
         </Heading>
