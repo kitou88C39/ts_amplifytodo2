@@ -1,28 +1,46 @@
 import {
   Flex,
-  //Box,
-  //FormControl,
-  //FormLabel,
-  //Input,
-  //Checkbox,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Checkbox,
   Stack,
-  //Link,
-  //Button,
+  Link,
+  Button,
   Heading,
   //Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Amplify } from 'aws-amplify';
 //import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
-import { Authenticator } from '@aws-amplify/ui-react';
+//import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../../../aws-exports';
+import { useNavigate } from 'react-router-dom';
+//import { NavigateFunction } from 'react-router/lib/hooks';
+import { useState } from 'react';
 Amplify.configure(awsExports);
 
 type Props = { isLogin: boolean };
 
 const Login: React.FC<Props> = (props) => {
-  const { isLogin } = props;
+  const login = (
+    name: string,
+    password: string
+    //navigate: NavigateFunction
+  ) => {
+    console.log(name, password, navigate);
+  };
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    login(name, password);
+  };
+
+  //const { isLogin } = props;
   //const { user, signOut } = useAuthenticator((context) => [context.user]);
   return (
     <Flex
@@ -35,13 +53,13 @@ const Login: React.FC<Props> = (props) => {
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
         </Stack>
-        <Authenticator>
+        {/* <Authenticator>
           {({ signOut, user }) => (
             <main>
               {user ? (
                 <h1 className='font-bold text-white'>
                   <button
-                    onClick={signOut}
+                    //onClick={signOut}
                     className='inline-block px-4 py-2 mt-4 text-sm leading-none text-white border border-white rounded hover:border-transparent hover:text-emerald-700 hover:bg-white lg:mt-0'
                   >
                     {isLogin ? 'LogIn' : 'LogOut'}
@@ -50,7 +68,8 @@ const Login: React.FC<Props> = (props) => {
                 </h1>
               ) : (
                 <button
-                  onClick={signOut}
+                  //onClick={signOut}
+                  onClick={() => navigate('/Main')}
                   className='inline-block px-4 py-2 mt-4 text-sm leading-none text-white border border-white rounded hover:border-transparent hover:text-emerald-700 hover:bg-white lg:mt-0'
                 >
                   LogOut
@@ -58,8 +77,8 @@ const Login: React.FC<Props> = (props) => {
               )}
             </main>
           )}
-        </Authenticator>
-        {/* <Box
+        </Authenticator> */}
+        <Box
           rounded={'lg'}
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
@@ -83,7 +102,9 @@ const Login: React.FC<Props> = (props) => {
                 <Checkbox>Remember me</Checkbox>
                 <Link color={'green.400'}>Forgot password?</Link>
               </Stack>
+
               <Button
+                onClick={() => navigate('/Main')}
                 bg={'green.400'}
                 color={'white'}
                 _hover={{
@@ -94,7 +115,7 @@ const Login: React.FC<Props> = (props) => {
               </Button>
             </Stack>
           </Stack>
-        </Box> */}
+        </Box>
       </Stack>
     </Flex>
   );

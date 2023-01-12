@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "amplifytodo2Gql",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/kitoumasaomi/Desktop/Abe_Task4/amplify_todo2/amplify/backend/api/amplifytodo2Gql/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2024-01-10T11:37:24.766Z",
+      "keyDescription": "amplifytodo2Gql AuthKey"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
+  }
+}

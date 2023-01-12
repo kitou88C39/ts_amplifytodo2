@@ -1,11 +1,11 @@
 import { Box, Stack, Heading, Flex, Button } from '@chakra-ui/react';
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import { Authenticator } from '@aws-amplify/ui-react';
+//import { useAuthenticator } from '@aws-amplify/ui-react';
+//import { Authenticator } from '@aws-amplify/ui-react';
 
 type Props = { isLogin: boolean };
 const Header: React.FC<Props> = (props) => {
   const { isLogin } = props;
-  const { user, signOut } = useAuthenticator((context) => [context.user]);
+  //const { user, signOut } = useAuthenticator((context) => [context.user]);
 
   //const { isOpen, onOpen, onClose } = useDisclosure();
   //const handleToggle = () => (isOpen ? onClose() : onOpen());
@@ -37,7 +37,8 @@ const Header: React.FC<Props> = (props) => {
         flexGrow={1}
         mt={{ base: 4, md: 0 }}
       ></Stack>
-      <Authenticator>
+
+      {/* <Authenticator>
         {({ signOut, user }) => (
           <Box
             //display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
@@ -64,7 +65,7 @@ const Header: React.FC<Props> = (props) => {
             )}
           </Box>
         )}
-      </Authenticator>
+      </Authenticator> */}
     </Flex>
   );
 };

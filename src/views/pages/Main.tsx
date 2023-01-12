@@ -24,8 +24,8 @@ const Main: React.FC = () => {
   return (
     <VStack spacing={6} align='stretch' p={0}>
       <Header isLogin={isLogin} />
-      <AddTodo />
       <TodoList />
+      <AddTodo />
     </VStack>
   );
 };
