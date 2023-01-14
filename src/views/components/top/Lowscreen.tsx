@@ -3,7 +3,7 @@ import { Box, SimpleGrid, Icon, Text, Stack, Flex } from '@chakra-ui/react';
 //import { AddIcon, ArrowForwardIcon, CheckIcon } from '@chakra-ui/icons';
 import { BsKeyboard, BsCheckSquare } from 'react-icons/bs';
 import { BiLogIn } from 'react-icons/bi';
-//import { AiOutlineDoubleRight } from 'react-icons/Ai';
+import { AiOutlineDoubleRight } from 'react-icons/ai';
 import { Center } from '@chakra-ui/react';
 
 interface FeatureProps {
@@ -64,9 +64,9 @@ export default function Lowerscreen() {
             text={'New Registration and Login'}
           />
         </Center>
-        {/* <h3>
+        <h3>
           <AiOutlineDoubleRight />
-        </h3> */}
+        </h3>
         <Center>
           <Feature
             icon={<Icon as={BsKeyboard} w={14} h={14} />}
@@ -74,9 +74,9 @@ export default function Lowerscreen() {
             text={'Posting and Editing Information'}
           />
         </Center>
-        {/* <h3>
+        <h3>
           <AiOutlineDoubleRight />
-        </h3> */}
+        </h3>
         <Center>
           <Feature
             icon={<Icon as={BsCheckSquare} w={14} h={14} />}
