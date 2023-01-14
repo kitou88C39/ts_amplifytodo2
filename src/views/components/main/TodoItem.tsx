@@ -21,15 +21,14 @@ import {
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { useAppDispatch } from '../../../stores/hooks';
-import {
-  deleteTodo,
-  editTodo,
-  updateTodo,
-} from '../../../stores/slices/todoSlice';
+//import {
+//deleteTodo,
+//editTodo,
+//updateTodo,
+//} from '../../../stores/slices/todoSlice';
 import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
-//import { text } from 'stream/consumers';
-//import { setTextRange } from 'typescript';
+import { updateTodoApi } from '../../../stores/slices/todoAPI';
 
 type Props = {
   id: string;
@@ -43,17 +42,30 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState(content);
   const dispatch = useAppDispatch();
-  const handleUpdate = () => {
-    dispatch(updateTodo(id));
+
+  const handleUpdate = async () => {
+    try {
+      const switchIsDone = !isDone;
+      const data = { id, isDone: switchIsDone };
+      await updateTodoApi(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   const handleEdit = () => {
     if (isEdit) {
       dispatch(editTodo({ id: id, content: text }));
     }
     setIsEdit(!isEdit);
   };
-  const handleDelete = () => {
-    dispatch(deleteTodo(id));
+  const handleDelete = async () => {
+    try {
+      const data = { id };
+      await deleteTodoApi(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

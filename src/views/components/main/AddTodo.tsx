@@ -4,25 +4,24 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  //Input,
-  //TextTitle,
-  //TextField,
   Textarea,
 } from '@chakra-ui/react';
-import { useAppDispatch } from '../../../stores/hooks';
-import { createTodo } from '../../../stores/slices/todoSlice';
+//import { useAppDispatch } from '../../../stores/hooks';
+//import { createTodo } from '../../../stores/slices/todoSlice';
+import { createTodoApi } from '../../../stores/slices/todoAPI';
 
 const AddTodo: React.FC = () => {
-  const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
     reset,
   } = useForm();
-  const onSubmit = (data: { title: string; content: string }) => {
+  const onSubmit = async (data: { title: string; content: string }) => {
     //const { title, content } = data;
-    dispatch(createTodo(data));
+    //dispatch(createTodo(data));
+    await createTodoApi(data);
     reset();
   };
 

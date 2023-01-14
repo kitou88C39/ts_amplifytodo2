@@ -1,10 +1,53 @@
+import React, { useEffect } from 'react';
 import { Flex, StackDivider, Text, VStack } from '@chakra-ui/react';
 import TodoItem from './TodoItem';
-import { useAppSelector } from '../../../stores/hooks';
-import { selectTodoList } from '../../../stores/slices/todoSlice';
+import { useAppDispatch, useAppSelector } from '../../../stores/hooks';
+import {
+  fetchTodoListAsync,
+  fetchTodoRealTime,
+  selectTodoList,
+  updateTodoRealTime,
+  editTodoRealTime,
+  deleteTodoRealTime,
+} from '../../../stores/slices/todoSlice';
+import { DataStore } from 'aws-amplify';
 
 const TodoList: React.FC = () => {
   const TodoList = useAppSelector(selectTodoList);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    //todo一覧の取得
+    const fetchTodoList = async () => {
+      await dispatch(fetchTodoListAsync());
+    };
+    fetchTodoList();
+  }, [dispatch]);
+
+  useEffect(() => {
+    //todoテーブルの変更をリアルタイムに検知する
+    const subscription = DataStore.observe(Todo).subscribe((msg) => {
+      //console.log(msg)
+      switch (msg.opType) {
+        case 'INSERT':
+          dispatch(fetchTodoRealTime(msg.element));
+          break;
+        case 'UPDATE':
+          dispatch(updateTodoRealTime(msg.element));
+          break;
+        case 'EDIT':
+          dispatch(editTodoRealTime(msg.element));
+          break;
+        case 'DELETE':
+          dispatch(deleteTodoRealTime(msg.element));
+          break;
+      }
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [dispatch]);
+
   return (
     <Flex flexDir='column' align='center'>
       <VStack
