@@ -21,14 +21,15 @@ import {
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { useAppDispatch } from '../../../stores/hooks';
-//import {
-//deleteTodo,
-//editTodo,
-//updateTodo,
-//} from '../../../stores/slices/todoSlice';
+import {
+  //deleteTodo,
+  editTodoRealTime,
+  //updateTodo,
+} from '../../../stores/slices/todoSlice';
 import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
-import { updateTodoApi } from '../../../stores/slices/todoAPI';
+import { updateTodoApi, deleteTodoApi } from '../../../stores/slices/todoAPI';
+import { editTodoRealTime } from '../../../stores/slices/todoSlice';
 
 type Props = {
   id: string;
@@ -55,7 +56,7 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
 
   const handleEdit = () => {
     if (isEdit) {
-      dispatch(editTodo({ id: id, content: text }));
+      dispatch(editTodoRealTime({ id: id, content: text }));
     }
     setIsEdit(!isEdit);
   };
@@ -101,7 +102,7 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
                   }}
                 />
               ) : (
-                <ReactMarkdown children={content}></ReactMarkdown>
+                <ReactMarkdown>{content}</ReactMarkdown>
               )}
             </ModalBody>
           </Container>

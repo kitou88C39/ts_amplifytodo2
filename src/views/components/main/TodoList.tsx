@@ -7,10 +7,11 @@ import {
   fetchTodoRealTime,
   selectTodoList,
   updateTodoRealTime,
-  editTodoRealTime,
+  //editTodoRealTime,
   deleteTodoRealTime,
 } from '../../../stores/slices/todoSlice';
 import { DataStore } from 'aws-amplify';
+import { Todo } from '../../../models';
 
 const TodoList: React.FC = () => {
   const TodoList = useAppSelector(selectTodoList);
@@ -35,9 +36,9 @@ const TodoList: React.FC = () => {
         case 'UPDATE':
           dispatch(updateTodoRealTime(msg.element));
           break;
-        case 'EDIT':
-          dispatch(editTodoRealTime(msg.element));
-          break;
+        //case 'EDIT':
+        //dispatch(editTodoRealTime(msg.element));
+        //break;
         case 'DELETE':
           dispatch(deleteTodoRealTime(msg.element));
           break;
@@ -66,7 +67,7 @@ const TodoList: React.FC = () => {
             No Todo
           </Text>
         ) : (
-          TodoList.map((item: any) => {
+          TodoList.map((item) => {
             return (
               <TodoItem
                 key={item.id}

@@ -25,7 +25,7 @@ export const fetchTodoListApi = async () => {
   }
 };
 //todoの編集
-export const updateTodoApi = async (data: { id: string; isDone: bigint }) => {
+export const updateTodoApi = async (data: { id: string; isDone: boolean }) => {
   const { id, isDone } = data;
   try {
     //変更元のデータを取得する
