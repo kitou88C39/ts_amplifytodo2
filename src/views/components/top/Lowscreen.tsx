@@ -63,7 +63,7 @@ export default function Lowerscreen() {
         />
 
         <Center>
-          <Icon as={AiOutlineDoubleRight} w={30} h={30} />
+          <Icon as={AiOutlineDoubleRight} w={35} h={35} />
         </Center>
 
         <Feature
@@ -73,7 +73,7 @@ export default function Lowerscreen() {
         />
 
         <Center>
-          <Icon as={AiOutlineDoubleRight} w={30} h={30} />
+          <Icon as={AiOutlineDoubleRight} w={35} h={35} />
         </Center>
 
         <Feature

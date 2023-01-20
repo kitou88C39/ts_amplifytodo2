@@ -1,9 +1,14 @@
 import { Box, Stack, Heading, Flex, Button } from '@chakra-ui/react';
 //import { useAuthenticator } from '@aws-amplify/ui-react';
-//import { Authenticator } from '@aws-amplify/ui-react';
-//import '@aws-amplify/ui-react/styles.css';
-//import awsExports from '../../../aws-exports';
+import { Authenticator } from '@aws-amplify/ui-react';
+
 //import { Amplify } from 'aws-amplify';
+
+//import { withAuthenticator } from '@aws-amplify/ui-react';
+//import '@aws-amplify/ui-react/styles.css';
+
+//import awsExports from './aws-exports';
+//Amplify.configure(awsExports);
 
 type Props = { isLogin: boolean };
 const Header: React.FC<Props> = (props) => {
@@ -41,21 +46,21 @@ const Header: React.FC<Props> = (props) => {
         mt={{ base: 4, md: 0 }}
       ></Stack>
 
-      {/* <Authenticator>
+      <Authenticator>
         {({ signOut, user }) => (
-          <Box
-            //display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
-            mt={{ base: 4, md: 0 }}
-          >
+          <Box>
             {user ? (
-              <Button
-                onClick={signOut}
-                colorScheme='whatsapp'
-                variant='outline'
-                _hover={{ bg: 'green.200', borderColor: 'green.700' }}
-              >
-                {isLogin ? 'LogIn' : 'LogOut'}
-              </Button>
+              <h1 color='black'>
+                <Button
+                  onClick={signOut}
+                  colorScheme='whatsapp'
+                  variant='outline'
+                  _hover={{ bg: 'green.200', borderColor: 'green.700' }}
+                >
+                  {isLogin ? 'LogIn' : 'LogOut'}
+                </Button>
+                {user.username}
+              </h1>
             ) : (
               <Button
                 onClick={signOut}
@@ -63,12 +68,12 @@ const Header: React.FC<Props> = (props) => {
                 variant='outline'
                 _hover={{ bg: 'green.200', borderColor: 'green.700' }}
               >
-                SignOut
+                Sign Out
               </Button>
             )}
           </Box>
         )}
-      </Authenticator> */}
+      </Authenticator>
     </Flex>
   );
 };

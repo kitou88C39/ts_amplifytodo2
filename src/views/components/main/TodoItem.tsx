@@ -21,15 +21,10 @@ import {
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { useAppDispatch } from '../../../stores/hooks';
-import {
-  //deleteTodo,
-  editTodoRealTime,
-  //updateTodo,
-} from '../../../stores/slices/todoSlice';
+import { editTodoRealTime } from '../../../stores/slices/todoSlice';
 import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
 import { updateTodoApi, deleteTodoApi } from '../../../stores/slices/todoAPI';
-import { editTodoRealTime } from '../../../stores/slices/todoSlice';
 
 type Props = {
   id: string;
