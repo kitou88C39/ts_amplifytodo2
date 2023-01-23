@@ -2,7 +2,6 @@ import { VStack } from '@chakra-ui/layout';
 import AddTodo from '../components/main/AddTodo';
 import Header from '../components/main/Header';
 import TodoList from '../components/main/TodoList';
-
 //import { Auth, Amplify, API, DataStore, graphqlOperation } from 'aws-amplify';
 import { Auth, Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';

@@ -2,13 +2,12 @@ import { Box, Stack, Heading, Flex, Button } from '@chakra-ui/react';
 //import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Authenticator } from '@aws-amplify/ui-react';
 
-//import { Amplify } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 
 //import { withAuthenticator } from '@aws-amplify/ui-react';
-//import '@aws-amplify/ui-react/styles.css';
-
-//import awsExports from './aws-exports';
-//Amplify.configure(awsExports);
+import '@aws-amplify/ui-react/styles.css';
+import awsExports from '../../../aws-exports';
+Amplify.configure(awsExports);
 
 type Props = { isLogin: boolean };
 const Header: React.FC<Props> = (props) => {

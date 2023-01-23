@@ -18,18 +18,13 @@ import { Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../../../aws-exports';
 import { useNavigate } from 'react-router-dom';
-//import { NavigateFunction } from 'react-router/lib/hooks';
 import { useState } from 'react';
 Amplify.configure(awsExports);
 
 type Props = { isLogin: boolean };
 
 const Login: React.FC<Props> = (props) => {
-  const login = (
-    name: string,
-    password: string
-    //navigate: NavigateFunction
-  ) => {
+  const login = (name: string, password: string) => {
     console.log(name, password, navigate);
   };
   const navigate = useNavigate();
