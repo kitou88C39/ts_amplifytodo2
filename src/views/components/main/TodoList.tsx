@@ -7,7 +7,6 @@ import {
   fetchTodoRealTime,
   selectTodoList,
   updateTodoRealTime,
-  //editTodoRealTime,
   deleteTodoRealTime,
 } from '../../../stores/slices/todoSlice';
 import { DataStore } from 'aws-amplify';
@@ -28,7 +27,6 @@ const TodoList: React.FC = () => {
   useEffect(() => {
     //todoテーブルの変更をリアルタイムに検知する
     const subscription = DataStore.observe(Todo).subscribe((msg) => {
-      //console.log(msg)
       switch (msg.opType) {
         case 'INSERT':
           dispatch(fetchTodoRealTime(msg.element));
@@ -36,9 +34,6 @@ const TodoList: React.FC = () => {
         case 'UPDATE':
           dispatch(updateTodoRealTime(msg.element));
           break;
-        //case 'EDIT':
-        //dispatch(editTodoRealTime(msg.element));
-        //break;
         case 'DELETE':
           dispatch(deleteTodoRealTime(msg.element));
           break;
@@ -79,8 +74,6 @@ const TodoList: React.FC = () => {
             );
           })
         )}
-        {/* <TodoItem id='fawhu' title='aaa' content='bbb' isDone={false} />
-        <TodoItem id='cvvvv' title='ccc' content='ddd' isDone={true} /> */}
       </VStack>
     </Flex>
   );
