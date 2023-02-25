@@ -44,14 +44,6 @@ export default function Upperscreen() {
             >
               Get start
             </Button>
-            {/* <Button
-            bg={'whiteAlpha.400'}
-            rounded={'full'}
-            color={'black'}
-            _hover={{ bg: 'whiteAlpha.900' }}
-          >
-            Get Start
-          </Button> */}
           </Stack>
         </Stack>
       </VStack>
