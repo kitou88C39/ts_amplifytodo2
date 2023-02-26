@@ -4,24 +4,27 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  Input,
+  Textarea,
 } from '@chakra-ui/react';
-import { useAppDispatch } from '../../stores/hooks';
-import { createTodo } from '../../stores/slices/todoSlice';
+//import { useAppDispatch } from '../../../stores/hooks';
+//import { createTodo } from '../../../stores/slices/todoSlice';
+import { createTodoApi } from '../../../stores/slices/todoAPI';
 
 const AddTodo: React.FC = () => {
-  const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
     reset,
   } = useForm();
-  const onSubmit = (data: { title: string; content: string }) => {
-    const { title } = data;
-    dispatch(createTodo(title));
+  const onSubmit = async (data: { title: string; content: string }) => {
+    //const { title, content } = data;
+    //dispatch(createTodo(data));
+    await createTodoApi(data);
     reset();
   };
+
   return (
     <Box display='flex' justifyContent='center'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -29,16 +32,14 @@ const AddTodo: React.FC = () => {
           isInvalid={errors.title}
           w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
         >
-          <Input
+          <Textarea
             id='title'
+            color='black'
             placeholder='Enter Title'
+            _placeholder={{ color: 'inherit' }}
             {...register('title', { required: 'Please enter title.' })}
           />
-          {/* <Input
-            id='content'
-            placeholder='Enter Content'
-            {...register('content', { required: 'Please enter content.' })}
-          /> */}
+
           <FormErrorMessage>
             {errors.title && errors.title.message}
           </FormErrorMessage>
@@ -47,14 +48,11 @@ const AddTodo: React.FC = () => {
           isInvalid={errors.content}
           w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
         >
-          {/* <Input
-            id='title'
-            placeholder='Enter Title'
-            {...register('title', { required: 'Please enter title.' })}
-          /> */}
-          <Input
+          <Textarea
             id='content'
+            color='black'
             placeholder='Enter Content'
+            _placeholder={{ color: 'inherit' }}
             {...register('content', { required: 'Please enter content.' })}
           />
           <FormErrorMessage>

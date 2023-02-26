@@ -1,27 +1,30 @@
 import {
   Modal,
+  ModalBody,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalFooter,
-  ModalBody,
   ModalCloseButton,
   useDisclosure,
   Flex,
   Icon,
   Text,
+  Textarea,
   Button,
+  Container,
 } from '@chakra-ui/react';
-//import { Flex, Icon, Text } from '@chakra-ui/react';
 import {
   RiCheckboxBlankCircleLine,
   RiCheckboxCircleFill,
 } from 'react-icons/ri';
-
 import moment from 'moment';
 import { BsPencil, BsTrash } from 'react-icons/bs';
-import { useAppDispatch } from '../../stores/hooks';
-import { deleteTodo, updateTodo } from '../../stores/slices/todoSlice';
+import { useAppDispatch } from '../../../stores/hooks';
+import { editTodoRealTime } from '../../../stores/slices/todoSlice';
+import ReactMarkdown from 'react-markdown';
+import { useState } from 'react';
+import { updateTodoApi, deleteTodoApi } from '../../../stores/slices/todoAPI';
 
 type Props = {
   id: string;
@@ -32,16 +35,33 @@ type Props = {
 
 const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [isEdit, setIsEdit] = useState(false);
+  const [text, setText] = useState(content);
   const dispatch = useAppDispatch();
-  const handleUpdate = () => {
-    dispatch(updateTodo(id));
+
+  const handleUpdate = async () => {
+    try {
+      const switchIsDone = !isDone;
+      const data = { id, isDone: switchIsDone };
+      await updateTodoApi(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   const handleEdit = () => {
-    dispatch(updateTodo(id));
+    if (isEdit) {
+      dispatch(editTodoRealTime({ id: id, content: text }));
+    }
+    setIsEdit(!isEdit);
   };
-  const handleDelete = () => {
-    dispatch(updateTodo(id));
+  const handleDelete = async () => {
+    try {
+      const data = { id };
+      await deleteTodoApi(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -57,17 +77,30 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
           onClick={handleUpdate}
         />
         <Text fontSize='xl' onClick={onOpen}>
-          <p color='gray.400'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
+          <p color='gray.600'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
           {title}
-          {/* {content} */}
         </Text>
       </Flex>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent h='600px' w='1000px'>
+        {/* <ModalContent h='600px' w='1000px'> */}
+        <ModalContent>
           <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>{content}</ModalBody>
+          <Container bg='green.500' maxW='2xl' color='white'>
+            <ModalCloseButton />
+            <ModalBody>
+              {isEdit ? (
+                <Textarea
+                  value={text}
+                  onChange={(event) => {
+                    setText(event.target.value);
+                  }}
+                />
+              ) : (
+                <ReactMarkdown>{content}</ReactMarkdown>
+              )}
+            </ModalBody>
+          </Container>
           <ModalFooter gap={7}>
             <Icon
               as={BsPencil}
