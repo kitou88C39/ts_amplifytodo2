@@ -6,12 +6,10 @@ import {
   FormErrorMessage,
   Textarea,
 } from '@chakra-ui/react';
-//import { useAppDispatch } from '../../../stores/hooks';
-//import { createTodo } from '../../../stores/slices/todoSlice';
+
 import { createTodoApi } from '../../../stores/slices/todoAPI';
 
 const AddTodo: React.FC = () => {
-  //const dispatch = useAppDispatch();
   const {
     handleSubmit,
     register,
@@ -19,8 +17,6 @@ const AddTodo: React.FC = () => {
     reset,
   } = useForm();
   const onSubmit = async (data: { title: string; content: string }) => {
-    //const { title, content } = data;
-    //dispatch(createTodo(data));
     await createTodoApi(data);
     reset();
   };
