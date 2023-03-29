@@ -13,7 +13,10 @@ const Main: React.FC = () => {
   Auth.currentUserInfo()
     .then((user: any) => {
       if (user == null) setIsLogin(true);
-      else if (user != null) setIsLogin(false);
+      else if (user != null) {
+        setIsLogin(false);
+        console.log(user);
+      }
     })
     .catch((e: any) => {
       console.log(e);
