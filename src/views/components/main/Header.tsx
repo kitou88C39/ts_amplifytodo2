@@ -5,7 +5,7 @@ import awsExports from '../../../aws-exports';
 Amplify.configure(awsExports);
 
 type Props = { isLogin: boolean };
-//const Header: React.FC = () => {
+
 const Header: React.FC<Props> = (props) => {
   const { isLogin } = props;
   //const { user, signOut } = useAuthenticator((context) => [context.user]);
