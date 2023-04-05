@@ -25,7 +25,7 @@ import { editTodoRealTime } from '../../../stores/slices/todoSlice';
 import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
 import { updateTodoApi, deleteTodoApi } from '../../../stores/slices/todoAPI';
-
+import { useAuthenticator } from '@aws-amplify/ui-react';
 type Props = {
   id: string;
   title: string;
