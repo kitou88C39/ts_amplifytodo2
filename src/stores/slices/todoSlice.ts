@@ -18,6 +18,14 @@ export const fetchTodoListAsync = createAsyncThunk(
   }
 );
 
+export const fetchReadListAsync = createAsyncThunk(
+  'read/fetchReadList',
+  async () => {
+    const response = await fetchTodoListApi();
+    return response;
+  }
+);
+
 export const todoSlice = createSlice({
   name: 'todo',
   initialState,

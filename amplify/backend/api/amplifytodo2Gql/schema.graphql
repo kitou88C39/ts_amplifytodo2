@@ -3,11 +3,10 @@ type Todo @model @auth(rules: [{ allow: public }]) {
   title: String!
   content: String!
   isDone: Boolean!
-  writer: User!
-  reader: [User]
 }
-type User @model @auth(rules: [{ allow: public }]) {
+type Read @model @auth(rules: [{ allow: public }]) {
   id: ID!
-  name: String!
-  readTodo: [Todo]
+  todoId: String!
+  readerId: String!
+  createdAt: Date！
 }

@@ -1,5 +1,5 @@
 import { DataStore } from 'aws-amplify';
-import { Todo } from './../../models';
+import { Todo, Read } from './../../models';
 
 //todoの作成
 export const createTodoApi = async (data: {
@@ -9,6 +9,19 @@ export const createTodoApi = async (data: {
   const { title, content } = data;
   try {
     await DataStore.save(new Todo({ title, content, isDone: false }));
+  } catch (error) {
+    throw error;
+  }
+};
+//readの既読API
+export const createReadApi = async (data: {
+  todoId: string;
+  readerId: string;
+  createdAt: string;
+}) => {
+  const { todoId, readerId, createdAt } = data;
+  try {
+    await DataStore.save(new Read({ todoId, readerId, createdAt }));
   } catch (error) {
     throw error;
   }
