@@ -73,8 +73,8 @@ export const schema = {
                 }
             ]
         },
-        "User": {
-            "name": "User",
+        "Read": {
+            "name": "Read",
             "fields": {
                 "id": {
                     "name": "id",
@@ -83,8 +83,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "todoId": {
+                    "name": "todoId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "readerId": {
+                    "name": "readerId",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -108,7 +115,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Users",
+            "pluralName": "Reads",
             "attributes": [
                 {
                     "type": "model",
@@ -135,6 +142,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.3.5",
-    "version": "c9458ee202fd77798954e09ede149e6b"
+    "codegenVersion": "3.4.0",
+    "version": "d2139ebda134f05fcf90fcadcae50bd8"
 };

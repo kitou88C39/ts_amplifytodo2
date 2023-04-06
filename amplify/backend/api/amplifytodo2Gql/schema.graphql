@@ -8,5 +8,8 @@ type Read @model @auth(rules: [{ allow: public }]) {
   id: ID!
   todoId: String!
   readerId: String!
+<<<<<<< Updated upstream
   createdAt: Date！
+=======
+>>>>>>> Stashed changes
 }

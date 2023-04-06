@@ -6,7 +6,7 @@ type TodoMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type UserMetaData = {
+type ReadMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -34,22 +34,24 @@ export declare const Todo: (new (init: ModelInit<Todo, TodoMetaData>) => Todo) &
   copyOf(source: Todo, mutator: (draft: MutableModel<Todo, TodoMetaData>) => MutableModel<Todo, TodoMetaData> | void): Todo;
 }
 
-type EagerUser = {
+type EagerRead = {
   readonly id: string;
-  readonly name: string;
+  readonly todoId: string;
+  readonly readerId: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyUser = {
+type LazyRead = {
   readonly id: string;
-  readonly name: string;
+  readonly todoId: string;
+  readonly readerId: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type User = LazyLoading extends LazyLoadingDisabled ? EagerUser : LazyUser
+export declare type Read = LazyLoading extends LazyLoadingDisabled ? EagerRead : LazyRead
 
-export declare const User: (new (init: ModelInit<User, UserMetaData>) => User) & {
-  copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+export declare const Read: (new (init: ModelInit<Read, ReadMetaData>) => Read) & {
+  copyOf(source: Read, mutator: (draft: MutableModel<Read, ReadMetaData>) => MutableModel<Read, ReadMetaData> | void): Read;
 }
