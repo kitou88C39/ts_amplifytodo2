@@ -64,6 +64,58 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
     }
   };
 
+  //Read配列とUser配列を結合して、Todo配列のプロパティに誰が既読したかを入れた後、その結合させた配列をforを使って既読した人を表示
+  interface Todo {
+    id: number;
+    title: string;
+    content: string;
+    isRead: boolean;
+    readers: string[];
+  }
+
+  interface User {
+    id: number;
+    name: string;
+  }
+
+  interface Read {
+    userId: number;
+    todoId: number;
+  }
+
+  const todos: Todo[] = [
+    { id: 1, title: '', content: '', isRead: false, readers: [] },
+    { id: 2, title: '', content: '', isRead: false, readers: [] },
+    { id: 3, title: '', content: '', isRead: false, readers: [] },
+  ];
+
+  const users: User[] = [
+    { id: 1, name: '' },
+    { id: 2, name: '' },
+    { id: 3, name: '' },
+  ];
+
+  const reads: Read[] = [
+    { userId: 1, todoId: 1 },
+    { userId: 2, todoId: 1 },
+    { userId: 3, todoId: 2 },
+  ];
+
+  const combined = todos.map((todo) => {
+    const readers = reads
+      .filter((read) => read.todoId === todo.id)
+      .map((read) => users.find((user) => user.id === read.userId)?.name ?? '');
+    return { ...todo, readers };
+  });
+
+  for (const todo of combined) {
+    if (todo.isRead) {
+      console.log(
+        `Todo ${todo.title} is already read by ${todo.readers.join(', ')}`
+      );
+    }
+  }
+
   return (
     <Flex w='100%' align='center' justify='space-between'>
       <Flex align='center'>
