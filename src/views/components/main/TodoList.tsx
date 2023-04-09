@@ -54,37 +54,39 @@ const TodoList: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Flex flexDir='column' align='center'>
-      <VStack
-        divider={<StackDivider borderColor='gray.300' />}
-        align='stretch'
-        w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
-        border='2px'
-        borderColor='gray.700'
-        borderRadius='sm'
-        p={3}
-        maxH='65vh'
-        overflow='scroll'
-      >
-        {TodoList.length === 0 ? (
-          <Text align='center' fontWeight='bold' fontSize='lg'>
-            No Todo
-          </Text>
-        ) : (
-          TodoList.map((item) => {
-            return (
-              <TodoItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                content={item.content}
-                isDone={item.isDone}
-              />
-            );
-          })
-        )}
-      </VStack>
-    </Flex>
+    <>
+      <Flex flexDir='column' align='center'>
+        <VStack
+          divider={<StackDivider borderColor='gray.300' />}
+          align='stretch'
+          w={{ base: '90vw', sm: '80vw', md: '70vw', lg: '60vw' }}
+          border='2px'
+          borderColor='gray.700'
+          borderRadius='sm'
+          p={3}
+          maxH='65vh'
+          overflow='scroll'
+        >
+          {TodoList.length === 0 ? (
+            <Text align='center' fontWeight='bold' fontSize='lg'>
+              No Todo
+            </Text>
+          ) : (
+            TodoList.map((item) => {
+              return (
+                <TodoItem
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  content={item.content}
+                  isDone={item.isDone}
+                />
+              );
+            })
+          )}
+        </VStack>
+      </Flex>
+    </>
   );
 };
 

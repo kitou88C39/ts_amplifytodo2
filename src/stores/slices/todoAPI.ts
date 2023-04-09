@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
 import { DataStore } from 'aws-amplify';
 import { Todo, Read } from './../../models';
-=======
-import { DataStore } from "aws-amplify";
-import { Todo, Read } from "./../../models";
->>>>>>> Stashed changes
 
 //todoの作成
 export const createTodoApi = async (data: {
@@ -22,18 +17,11 @@ export const createTodoApi = async (data: {
 export const createReadApi = async (data: {
   todoId: string;
   readerId: string;
-<<<<<<< Updated upstream
   createdAt: string;
-}) => {
-  const { todoId, readerId, createdAt } = data;
-  try {
-    await DataStore.save(new Read({ todoId, readerId, createdAt }));
-=======
 }) => {
   const { todoId, readerId } = data;
   try {
     await DataStore.save(new Read({ todoId, readerId }));
->>>>>>> Stashed changes
   } catch (error) {
     throw error;
   }
@@ -57,7 +45,7 @@ export const updateTodoApi = async (data: { id: string; isDone: boolean }) => {
     const original = await DataStore.query(Todo, id);
     //originalがundifinedの場合
     if (!original) {
-      alert("指定されたTodoはデータベース上に存在しません");
+      alert('指定されたTodoはデータベース上に存在しません');
       return;
     }
     //編集処理の実行
@@ -79,7 +67,7 @@ export const deleteTodoApi = async (data: { id: string }) => {
 
     //deleteTodがundifinedの場合ユーザーへ通知
     if (!deleteTodo) {
-      alert("指定されたTodoはデータベース上に存在しません");
+      alert('指定されたTodoはデータベース上に存在しません');
       return;
     }
     //削除処理の実行
