@@ -81,6 +81,7 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   interface Read {
     userId: number;
     todoId: number;
+    readerId: String;
   }
 
   const todos: Todo[] = [
@@ -96,9 +97,9 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   ];
 
   const reads: Read[] = [
-    { userId: 1, todoId: 1 },
-    { userId: 2, todoId: 1 },
-    { userId: 3, todoId: 2 },
+    { userId: 1, todoId: 1, readerId: '' },
+    { userId: 2, todoId: 2, readerId: '' },
+    { userId: 3, todoId: 3, readerId: '' },
   ];
 
   const combined = todos.map((todo) => {
