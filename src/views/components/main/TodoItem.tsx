@@ -79,7 +79,6 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   }
 
   interface Read {
-    userId: number;
     todoId: number;
     readerId: String;
   }
@@ -97,93 +96,97 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
   ];
 
   const reads: Read[] = [
-    { userId: 1, todoId: 1, readerId: '' },
-    { userId: 2, todoId: 2, readerId: '' },
-    { userId: 3, todoId: 3, readerId: '' },
+    { todoId: 1, readerId: '' },
+    { todoId: 2, readerId: '' },
+    { todoId: 3, readerId: '' },
   ];
 
-  const combined = todos.map((todo) => {
+  const Todo = todos.map((todo) => {
     const readers = reads
       .filter((read) => read.todoId === todo.id)
-      .map((read) => users.find((user) => user.id === read.userId)?.name ?? '');
+      .map((read) => users.find((user) => user.id === read.todoId)?.name ?? '');
     return { ...todo, readers };
   });
 
-  for (const todo of combined) {
+  for (const todo of Todo) {
     if (todo.isRead) {
       console.log(
-        `Todo ${todo.title} is already read by ${todo.readers.join(', ')}`
+        `Todo ${
+          (todo.title, todo.content)
+        } is already read by ${todo.readers.join(', ')}`
       );
     }
   }
 
   return (
-    <Flex w='100%' align='center' justify='space-between'>
-      <Flex align='center'>
-        <Icon
-          as={isDone ? RiCheckboxCircleFill : RiCheckboxBlankCircleLine}
-          color='orange'
-          cursor='pointer'
-          h={6}
-          mr={2}
-          w={6}
-          onClick={handleUpdate}
-        />
-        <Text fontSize='xl' onClick={onOpen}>
-          <p color='gray.600'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
-          {title}
-        </Text>
+    <>
+      <Flex w='100%' align='center' justify='space-between'>
+        <Flex align='center'>
+          <Icon
+            as={isDone ? RiCheckboxCircleFill : RiCheckboxBlankCircleLine}
+            color='orange'
+            cursor='pointer'
+            h={6}
+            mr={2}
+            w={6}
+            onClick={handleUpdate}
+          />
+          <Text fontSize='xl' onClick={onOpen}>
+            <p color='gray.600'>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
+            {title}
+          </Text>
+        </Flex>
+        <Modal onClose={onClose} isOpen={isOpen} isCentered>
+          <ModalOverlay />
+          {/* <ModalContent h='600px' w='1000px'> */}
+          <ModalContent>
+            <ModalHeader>{title}</ModalHeader>
+            <Container bg='green.500' maxW='2xl' color='white'>
+              <ModalCloseButton />
+              <ModalBody>
+                {isEdit ? (
+                  <Textarea
+                    value={text}
+                    onChange={(event) => {
+                      setText(event.target.value);
+                    }}
+                  />
+                ) : (
+                  <ReactMarkdown>{content}</ReactMarkdown>
+                )}
+              </ModalBody>
+            </Container>
+            <ModalFooter gap={7}>
+              <Icon
+                as={BsPencil}
+                color='orange'
+                cursor='pointer'
+                h={6}
+                w={6}
+                onClick={handleEdit}
+              />
+              <Icon
+                as={BsTrash}
+                color='orange'
+                cursor='pointer'
+                h={6}
+                w={6}
+                onClick={handleDelete}
+              />
+              <Button
+                mt={1}
+                colorScheme='whatsapp'
+                type='submit'
+                variant='outline'
+                onClick={onClose}
+              >
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Flex>
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay />
-        {/* <ModalContent h='600px' w='1000px'> */}
-        <ModalContent>
-          <ModalHeader>{title}</ModalHeader>
-          <Container bg='green.500' maxW='2xl' color='white'>
-            <ModalCloseButton />
-            <ModalBody>
-              {isEdit ? (
-                <Textarea
-                  value={text}
-                  onChange={(event) => {
-                    setText(event.target.value);
-                  }}
-                />
-              ) : (
-                <ReactMarkdown>{content}</ReactMarkdown>
-              )}
-            </ModalBody>
-          </Container>
-          <ModalFooter gap={7}>
-            <Icon
-              as={BsPencil}
-              color='orange'
-              cursor='pointer'
-              h={6}
-              w={6}
-              onClick={handleEdit}
-            />
-            <Icon
-              as={BsTrash}
-              color='orange'
-              cursor='pointer'
-              h={6}
-              w={6}
-              onClick={handleDelete}
-            />
-            <Button
-              mt={1}
-              colorScheme='whatsapp'
-              type='submit'
-              variant='outline'
-              onClick={onClose}
-            >
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Flex>
+    </>
   );
 };
 
