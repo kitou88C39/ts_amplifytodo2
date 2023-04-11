@@ -101,14 +101,22 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
     { todoId: 3, readerId: '' },
   ];
 
-  const Todo = todos.map((todo) => {
+  // const Todos = todos.map((todo) => {
+  //   const readers = reads
+  //     .filter((read) => read.todoId === todo.id)
+  //     .map((read) => users.find((user) => user.id === read.todoId)?.name ?? '');
+  //   return { ...todo, readers };
+  // });
+
+  const Todos = todos.map((todo) => {
     const readers = reads
       .filter((read) => read.todoId === todo.id)
       .map((read) => users.find((user) => user.id === read.todoId)?.name ?? '');
-    return { ...todo, readers };
+    const isRead = readers.length > 0; // readers配列が空でなければisReadをtrueに設定する
+    return { ...todo, readers, isRead };
   });
 
-  for (const todo of Todo) {
+  for (const todo of Todos) {
     if (todo.isRead) {
       console.log(
         `Todo ${
