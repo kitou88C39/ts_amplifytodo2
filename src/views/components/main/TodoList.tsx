@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Flex, StackDivider, Text, VStack } from '@chakra-ui/react';
 import TodoItem from './TodoItem';
 import { useAppDispatch, useAppSelector } from '../../../stores/hooks';
+
 import {
   fetchTodoListAsync,
-  fetchReadListAsync,
   fetchTodoRealTime,
   selectTodoList,
   updateTodoRealTime,
@@ -20,17 +20,9 @@ const TodoList: React.FC = () => {
   useEffect(() => {
     //todo一覧の取得
     const fetchTodoList = async () => {
-      await dispatch(fetchTodoListAsync());
+      await dispatch(fetchTodoListAsync([]));
     };
     fetchTodoList();
-  }, [dispatch]);
-
-  useEffect(() => {
-    //todo一覧の取得
-    const fetchReadList = async () => {
-      await dispatch(fetchReadListAsync());
-    };
-    fetchReadList();
   }, [dispatch]);
 
   useEffect(() => {

@@ -51,7 +51,7 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
 
   const handleEdit = () => {
     if (isEdit) {
-      dispatch(editTodoRealTime({ id: id, content: text }));
+      dispatch(editTodoRealTime({ id: id, title: text, content: text }));
     }
     setIsEdit(!isEdit);
   };
@@ -101,18 +101,11 @@ const TodoItem: React.FC<Props> = ({ id, title, content, isDone }) => {
     { todoId: 3, readerId: '' },
   ];
 
-  // const Todos = todos.map((todo) => {
-  //   const readers = reads
-  //     .filter((read) => read.todoId === todo.id)
-  //     .map((read) => users.find((user) => user.id === read.todoId)?.name ?? '');
-  //   return { ...todo, readers };
-  // });
-
   const Todos = todos.map((todo) => {
     const readers = reads
       .filter((read) => read.todoId === todo.id)
       .map((read) => users.find((user) => user.id === read.todoId)?.name ?? '');
-    const isRead = readers.length > 0; // readers配列が空でなければisReadをtrueに設定する
+    const isRead = readers.length > 0;
     return { ...todo, readers, isRead };
   });
 
