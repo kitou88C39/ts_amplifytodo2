@@ -2,11 +2,6 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const { Todo, Read } = initSchema(schema);
 
-
-const { Todo, User } = initSchema(schema);
-
-export {
-  Todo,
-  User
-};
+export { Todo, Read };
